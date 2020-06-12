@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title > Hangman Game </title>
+</head>
+<body>
+<h1 style="color:red"> Hangman Yo!!!</h1>
+<script>
+let words=["samuel","yuvraj","venkatesh","morgan","chandrapaul","bradman","javagal","dinesh","boucher","yusuf"];
+let word=words[Math.floor(Math.random()*words.length)];
+let answerArray=[];
+for(let i=0;i<word.length;i++){
+	answerArray[i]="_";
+}
+let remainLetters=word.length;
+let count=0;
+let limit=word.length+3;
+
+while(remainLetters>0 && count<limit){
+	alert(answerArray.join(" "));
+	let turn=limit-count;
+	alert("you have " + turn + " turns left");
+	let guess= prompt("Guess a letter , or click cancel to stop playing");
+	if(guess==null){
+		continue;
+	}
+	else if(guess.length!=1){
+		alert("please enter a single letter");
+	}
+	
+	else{
+		for(let j=0;j<word.length;j++){
+			if(word[j]==guess ){
+				answerArray[j]=guess;
+				
+				remainLetters--;
+			}
+		}
+	}
+	
+	if(turn==1){
+		alert(answerArray.join(" "));
+		alert("sorry you have exceeded all the trials. Better luck next time");
+	}
+	count++;
+	
+}
+if(remainLetters==0){
+	alert(answerArray.join(" "));
+	alert("Good job! The answer was "+ word);
+	}
+
+</script>
+</body>
+</html>
